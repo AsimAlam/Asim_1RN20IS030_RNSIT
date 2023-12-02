@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     // echo $result;
 
-    if($result){
+    if(!$result->isDead()){
         foreach ($result as $document) {
             echo json_encode(['success' => true, 'data' => 'Data fetched successfully','sqlUser'=>$userDetails, 'mongoUser' => $document]);
             break;
@@ -36,7 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         }
     }else{
         echo json_encode(['success' => true, 'data' => "Login Successful", 'sqlUser' => $userDetails]);
+        return;
     }
+
 
 
 
